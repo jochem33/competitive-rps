@@ -14,6 +14,9 @@ const rock = document.getElementById("rock")
 const paper = document.getElementById("paper")
 const scissors = document.getElementById("scissors")
 
+const countdown = document.getElementById("countdown")
+
+
 let gamestate = "CHOOSE"
 
 
@@ -89,9 +92,10 @@ socket.on("playerUpdate", () => {
 
 // when the gamestate is updated, refresh the roles of all players
 socket.on("stateUpdate", (data) => {
-    if(data.state == "CHOOSE"){
+    if(data.gamestate == "CHOOSE"){
         toggleRPSButtons(false)
-    } else if(data.state == "FIGHT") {
+        countdown.innerHTML = 10 - data.gametime
+    } else if(data.gamestate == "FIGHT") {
         toggleRPSButtons(true)
     }
     console.log(data)

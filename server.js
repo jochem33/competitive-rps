@@ -5,6 +5,11 @@ const http = require('http').Server(app)
 const io = require('socket.io')(http)
 const bodyParser = require("body-parser")
 
+
+const CHOOSETIME = 10
+const FIGHTTIME = 5
+
+
 // allow cors?
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "YOUR-DOMAIN.TLD")
@@ -23,7 +28,8 @@ app.use(bodyParser.json())
 // Data object (needs to be moved to database)
 let gameData = {
     "defaultGame": {
-        players: {}
+        players: {},
+        gametime: 0
     }
 }
 
@@ -81,7 +87,8 @@ app.post('/api/join/', (req, res) => {
 app.post('/api/host', (req, res) => {
     gameData[req.body.gamecode] = {
         players: {},
-        gamestate: "CHOOSE"
+        gamestate: "CHOOSE",
+        gametime: 0
     }
     gameData[req.body.gamecode].players[String(req.body.nickname)] = {
         score: 0,
@@ -123,7 +130,6 @@ io.on('connection', (socket) => {
     // when a new line is received, sent line object to all players
     socket.on('chooseObject', (data) => {
         const gameCode = Array.from(socket.rooms)[1]
-        console.log(gameData[gameCode].players[data.player], "player = " + data.player)
         gameData[gameCode].players[data.player].object = data.object
         stateUpdate(socket)
     })
@@ -140,7 +146,39 @@ function stateUpdate(socket) {
 }
 
 
+function stateUpdateGame(gameCode) {
+    if(Object.keys(gameData).includes(gameCode)){
+        // console.log(gameData[gameCode])
+        io.in(gameCode).emit("stateUpdate", gameData[gameCode])
+    }
+}
+
+
+function timeUpdate() {
+    for(let game in gameData) {
+        gameData[game].gametime++
+        if(gameData[game].gamestate == "CHOOSE" && gameData[game].gametime >= CHOOSETIME){
+            gameData[game].gametime = 0
+            gameData[game].gamestate = "FIGHT"
+
+            for(player in gameData[game].players) {
+                gameData[game].players[player].object = ""
+            }
+        }
+        if(gameData[game].gamestate == "FIGHT" && gameData[game].gametime >= FIGHTTIME){
+            gameData[game].gametime = 0
+            gameData[game].gamestate = "CHOOSE" 
+        }
+        stateUpdateGame(game)
+
+    }
+}
+
+
 // start server
 http.listen(3000, () => {
     console.log('listening on *:3000')
 })
+
+
+setInterval(timeUpdate, 1000)
