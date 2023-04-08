@@ -92,16 +92,23 @@ socket.on("playerUpdate", () => {
 
 // when the gamestate is updated, refresh the roles of all players
 socket.on("stateUpdate", (data) => {
+    console.log(data)
     document.getElementById("gamestate").innerHTML = data.gamestate
+    const winner = document.getElementById("winner")
     if(data.gamestate == "CHOOSE"){
+        winner.innerHTML = ""
         if(data.players[nickname].object == "") {
             toggleRPSButtons(false)
         }
         countdown.innerHTML = 10 - data.gametime
-    } else if(data.gamestate == "FIGHT") {
+    } 
+    else if(data.gamestate == "FIGHT") {
+        winner.innerHTML = ""
         toggleRPSButtons(true)
-    } else if(data.gamestate == "REVEAL") {
+    } 
+    else if(data.gamestate == "REVEAL") {
         toggleRPSButtons(true)
+        winner.innerHTML = data.lastWinner
     }
     // console.log(data)
 })
