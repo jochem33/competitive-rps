@@ -3,18 +3,7 @@
         "players": {
             "player1": {
                 "score": 0,
-                "object": "rock",
-                "effects": {
-                    "obsidian": {
-                        "name": "",
-                        "playerTarget": "rock", 
-                        "opponentTarget": "all",
-                        "timer": 3,
-                        "value": 1.1,
-                        "effective": true,
-                        "activateble": true
-                    }
-                }
+                "object": "rock"
             }
         },
         "gamestate": "CHOOSE",

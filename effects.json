@@ -1,0 +1,74 @@
+{
+    "vulcano": {
+        "playerTarget": "rock", 
+        "opponentTarget": "all",
+        "type": "field",
+        "timer": 1,
+        "value": 1.1,
+        "effective": true,
+        "activatable": false
+    },
+    "academy": {
+        "playerTarget": "paper", 
+        "opponentTarget": "all",
+        "type": "field",
+        "timer": 1,
+        "value": 1.1,
+        "effective": true,
+        "activatable": false
+    },
+    "tailor": {
+        "playerTarget": "scissors", 
+        "opponentTarget": "all",
+        "type": "field",
+        "timer": 1,
+        "value": 1.1,
+        "effective": true,
+        "activatable": false
+    },
+    "kitchen": {
+        "playerTarget": "rock", 
+        "opponentTarget": "all",
+        "type": "field",
+        "timer": 1,
+        "value": 0.9,
+        "effective": true,
+        "activatable": false
+    },
+    "magnet-realm": {
+        "playerTarget": "scissors", 
+        "opponentTarget": "all",
+        "type": "field",
+        "timer": 1,
+        "value": 0.9,
+        "effective": true,
+        "activatable": false
+    },
+    "ocean": {
+        "playerTarget": "paper", 
+        "opponentTarget": "all",
+        "type": "field",
+        "timer": 1,
+        "value": 0.9,
+        "effective": true,
+        "activatable": false
+    },
+    "obsidian": {
+        "playerTarget": "rock", 
+        "opponentTarget": "paper",
+        "type": "status",
+        "timer": 3,
+        "value": 1.1,
+        "effective": true,
+        "activatable": false
+    },
+    "loser": {
+        "playerTarget": "all", 
+        "opponentTarget": "all",
+        "type": "status",
+        "timer": 1,
+        "value": 0.9,
+        "effective": true,
+        "activatable": false
+    }
+}
