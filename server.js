@@ -1,9 +1,13 @@
-// import needed packages
+// import needed modules
 const express = require('express')
 const app = express()
 const http = require('http').Server(app)
 const io = require('socket.io')(http)
 const bodyParser = require("body-parser")
+
+// local modules
+const determineWinner = require("./determineWinner");
+// const gameLogic = require("gameLogic");
 
 
 const CHOOSETIME = 10
@@ -141,6 +145,7 @@ io.on('connection', (socket) => {
 })
 
 
+
 // function for updating the state of a game
 function stateUpdate(socket) {
     let gameCode = Array.from(socket.rooms)[1]
@@ -158,9 +163,7 @@ function stateUpdateGame(gameCode) {
     }
 }
 
-function determineWinner(gamedata){
-    return "a"
-}
+
 
 function timeUpdate() {
     for(let game in gameData) {
@@ -168,7 +171,7 @@ function timeUpdate() {
         if(gameData[game].gamestate == "CHOOSE" && gameData[game].gametime >= CHOOSETIME){
             gameData[game].gametime = 0
             gameData[game].gamestate = "FIGHT"
-            winnerName = determineWinner(gameData[game])
+            winnerName = determineWinner.determine(gameData[game])
             gameData[game].lastWinner = winnerName
             
         }
@@ -196,4 +199,4 @@ http.listen(3000, () => {
 })
 
 
-setInterval(timeUpdate, 1000)
+setInterval(timeUpdate, 1000, gameData)
