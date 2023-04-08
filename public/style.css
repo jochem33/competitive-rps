@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap');
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: white;
+    opacity: 1; /* Firefox */
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: white;
+  }
+  
+  ::-ms-input-placeholder { /* Microsoft Edge */
+    color: white;
+  }
+
+
+.siteTitle {
+    font-family: 'Arial Rounded MT Bold', 'Nunito', "Helvetica Rounded", Arial, sans-serif;
+    color: white;
+    margin: 0;
+    /* margin-left: 5vw; */
+
+    padding: 1vh;
+    grid-area: title;
+}
+
+.siteTitleCentered {
+    display: block;
+    text-align: center;
+    width: 100vw;
+    padding-top: 5vh;
+    margin-left: 0;
+}
+
+#content {
+    background-color: #FF5A5A;
+    width: 100vw;
+    height: 100vh;
+    
+}
+
+.gameLayoutContent {
+    display: grid;
+    grid-template-columns: 100vh 2fr;
+    grid-template-areas: 
+        'title title'
+        'canvas players'
+        'words players';
+    padding: 0 5vw 0 5vw;
+}
+
+body {
+    overflow: hidden;
+}
+
+#canvasContainer {
+    grid-area: canvas;
+    height: 70vh;
+    margin: 0; 
+    /* margin-left: 5vw; */
+}
+
+
+.box {
+    display: block;
+    font-family: 'Arial Rounded MT Bold', 'Nunito', "Helvetica Rounded", Arial, sans-serif;
+    background-color: #FDA7A7;
+    border: 0 solid transparent;
+    border-radius: 1vw;
+    padding: 1vw;
+    color: white;
+    text-align: center;
+    width: 25vw;
+    /* height: 7vh; */
+    font-size: 6vh;
+    margin-bottom: 2vh;
+    text-decoration: none;
+}
+
+
+input:focus{
+    outline: none;
+}
+
+/* .buttonBox {
+    text-align: center;
+    width: 20vw;
+    height: 7vh;
+    font-size: 6vh;
+    margin: 2vh;
+    text-decoration: none;
+} */
+
+.buttonContainer {
+    margin-top: 4vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+
+.formlabel {
+    font-family: 'Arial Rounded MT Bold', 'Nunito', "Helvetica Rounded", Arial, sans-serif;
+    font-size: 6vh;
+    color: white;
+    display: inline;
+}
+
+.checkBox {
+    display: inline;
+    background-color: #FDA7A7;
+    border: 0 solid transparent;
+    border-radius: 1vw;
+    padding: 1vw;
+    text-align: center;
+    width: 5vw;
+    height: 5vh;
+    margin-top: 2vh;
+    text-decoration: none;
+}
+
+
+#roleText {
+    display: block;
+    font-family: 'Arial Rounded MT Bold', 'Nunito', "Helvetica Rounded", Arial, sans-serif;
+    border: 0 solid transparent;
+    border-radius: 1vw;
+    padding: 1vw;
+    color: white;
+    width: 16vw;
+    /* height: 7vh; */
+    font-size: small;
+    margin: 0;
+    text-decoration: none;
+}
+
+#rightBar {
+    grid-area: players;
+    width: 20vw;
+    height: 70vh;
+    padding: 0 1vw 0 1vw;
+}
+
+.player {
+    font-size: small;
+    width: 16vw;
+}
+
+
+.words {
+    grid-area: words;
+    display: flex;
+    justify-content: space-between;
+}
+
+.wordsBox {
+    width: 28vh;
+    height: 5vh;
+    font-size: small;
+}
+
+.box:disabled {
+    background-color: #fe8383;
+}

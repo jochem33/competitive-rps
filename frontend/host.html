@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Pictionairy (maar dan anders)</title>
+        <link rel="stylesheet" href="/style.css">
+        <link rel="stylesheet" href="/normalize.css">
+    </head>
+    <body>
+        <div id="content">
+            <h1 class="siteTitle siteTitleCentered">Pictionairy (maar dan anders)</h1>
+
+            <div>
+                <form id="joinForm" class="buttonContainer" action="/api/host" method="post">
+                    <input autocomplete="off" class="box" type="text" maxlength="20" name="nickname" id="nickname" placeholder="nickname">
+                    <input autocomplete="off" class="box" type="text" maxlength="6" name="gamecode" id="gamecode" placeholder="code">
+                    <div>
+                        <label class= "formlabel" for="private">private</label>
+                        <input class="checkBox" type="checkbox" name="private">    
+                    </div>
+                    <input class="box" type="submit" value="host">
+                </form>
+            </div>
+        </div>
+        <script src="/join.js"></script>
+    </body>
+</html>
