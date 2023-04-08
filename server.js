@@ -30,7 +30,8 @@ app.use(bodyParser.json())
 let gameData = {
     "defaultGame": {
         players: {},
-        gametime: 0
+        gametime: 0,
+        lastWinner: ""
     }
 }
 
@@ -89,7 +90,8 @@ app.post('/api/host', (req, res) => {
     gameData[req.body.gamecode] = {
         players: {},
         gamestate: "CHOOSE",
-        gametime: 0
+        gametime: 0,
+        lastWinner: ""
     }
     gameData[req.body.gamecode].players[String(req.body.nickname)] = {
         score: 0,
@@ -131,8 +133,10 @@ io.on('connection', (socket) => {
     // when a new line is received, sent line object to all players
     socket.on('chooseObject', (data) => {
         const gameCode = Array.from(socket.rooms)[1]
-        gameData[gameCode].players[data.player].object = data.object
-        stateUpdate(socket)
+        if(Object.keys(gameData).includes(gameCode)){
+            gameData[gameCode].players[data.player].object = data.object
+            stateUpdate(socket)
+        }
     })
 })
 
@@ -155,7 +159,7 @@ function stateUpdateGame(gameCode) {
 }
 
 function determineWinner(gamedata){
-    return gamedata.players["a"]
+    return "a"
 }
 
 function timeUpdate() {
@@ -165,12 +169,12 @@ function timeUpdate() {
             gameData[game].gametime = 0
             gameData[game].gamestate = "FIGHT"
             winnerName = determineWinner(gameData[game])
-
+            gameData[game].lastWinner = winnerName
             
         }
         if(gameData[game].gamestate == "FIGHT" && gameData[game].gametime >= FIGHTTIME){
             gameData[game].gametime = 0
-            gameData[game].gamestate = "REVEAL" 
+            gameData[game].gamestate = "REVEAL"
         }
         if(gameData[game].gamestate == "REVEAL" && gameData[game].gametime >= REVEALTIME){
             gameData[game].gametime = 0
