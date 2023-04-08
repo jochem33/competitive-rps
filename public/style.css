@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: white;
     opacity: 1; /* Firefox */
@@ -15,13 +17,16 @@
 
 
 .siteTitle {
-    font-family: 'Arial Rounded MT Bold', 'Nunito', "Helvetica Rounded", Arial, sans-serif;
+    font-family: 'Bebas Neue';
     color: white;
     margin: 0;
-    /* margin-left: 5vw; */
-
+    font-size: 4em;
     padding: 1vh;
     grid-area: title;
+}
+
+.game-header .siteTitle {
+    font-size: 2em;
 }
 
 .siteTitleCentered {
@@ -41,12 +46,10 @@
 
 .gameLayoutContent {
     display: grid;
-    grid-template-columns: 100vh 2fr;
-    grid-template-areas: 
-        'title title'
-        'canvas players'
-        'words players';
-    padding: 0 5vw 0 5vw;
+}
+
+.game-header {
+    display: flex;
 }
 
 body {
@@ -63,7 +66,7 @@ body {
 
 .box {
     display: block;
-    font-family: 'Arial Rounded MT Bold', 'Nunito', "Helvetica Rounded", Arial, sans-serif;
+    font-family: 'Bebas Neue';
     background-color: #FDA7A7;
     border: 0 solid transparent;
     border-radius: 1vw;
@@ -103,7 +106,7 @@ input:focus{
 
 
 .formlabel {
-    font-family: 'Arial Rounded MT Bold', 'Nunito', "Helvetica Rounded", Arial, sans-serif;
+    font-family: 'Bebas Neue';
     font-size: 6vh;
     color: white;
     display: inline;
@@ -125,7 +128,7 @@ input:focus{
 
 #roleText {
     display: block;
-    font-family: 'Arial Rounded MT Bold', 'Nunito', "Helvetica Rounded", Arial, sans-serif;
+    font-family: 'Bebas Neue';
     border: 0 solid transparent;
     border-radius: 1vw;
     padding: 1vw;

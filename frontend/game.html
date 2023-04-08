@@ -1,28 +1,33 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Pictionairy (maar dan anders)</title>
+        <title>Competitive RPS</title>
         <link rel="stylesheet" href="/style.css">
         <link rel="stylesheet" href="/normalize.css">
     </head>
     <body>
         <div id="content" class="gameLayoutContent">
-            <h1 class="siteTitle">RPS!</h1>
-            <h1 class="countdown" id="countdown"></h1>
-            <p id="gamestate"></p>
-            <div id="rightBar">
-                <p id="roleText">Players</p>
-                <table id="playerlist"></table>
+            <div class="game-header">
+                <h1 class="siteTitle">Competitive RPS</h1>
+                <h1 class="countdown" id="countdown"></h1>
             </div>
+            <div>
+                <p id="gamestate"></p>
+                <div id="rightBar">
+                    <p id="roleText">Players</p>
+                    <table id="playerlist"></table>
+                </div>
 
-            <div class="words">
-                <input type="button" id="rock" class="rpsbutton" value="rock">
-                <input type="button" id="paper" class="rpsbutton" value="paper">
-                <input type="button" id="scissors" class="rpsbutton" value="scissors">
+                <div class="words">
+                    <input type="button" id="rock" class="rpsbutton" value="rock">
+                    <input type="button" id="paper" class="rpsbutton" value="paper">
+                    <input type="button" id="scissors" class="rpsbutton" value="scissors">
+                </div>
+            </div>
+            <div>
+                <h1>Score</h1>
             </div>
         </div>
-        
-        
         <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.3.1/p5.js" integrity="sha512-a5hlZKgpC1LVAuKgVeXdP0D9Yfacj0hLtNdzx9zFMkIWRrQyO37KtIPiqArGmVuaBYu3ON6Vt0N3+G/JaLXQYQ==" crossorigin="anonymous"></script>
         <script src="/socket.io/socket.io.js"></script>
         <script src="/game.js"></script>
