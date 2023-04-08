@@ -8,6 +8,7 @@ const bodyParser = require("body-parser")
 
 const CHOOSETIME = 10
 const FIGHTTIME = 5
+const REVEALTIME = 3
 
 
 // allow cors?
@@ -153,6 +154,9 @@ function stateUpdateGame(gameCode) {
     }
 }
 
+function determineWinner(gamedata){
+    return gamedata.players["a"]
+}
 
 function timeUpdate() {
     for(let game in gameData) {
@@ -160,14 +164,21 @@ function timeUpdate() {
         if(gameData[game].gamestate == "CHOOSE" && gameData[game].gametime >= CHOOSETIME){
             gameData[game].gametime = 0
             gameData[game].gamestate = "FIGHT"
+            winnerName = determineWinner(gameData[game])
+
+            
+        }
+        if(gameData[game].gamestate == "FIGHT" && gameData[game].gametime >= FIGHTTIME){
+            gameData[game].gametime = 0
+            gameData[game].gamestate = "REVEAL" 
+        }
+        if(gameData[game].gamestate == "REVEAL" && gameData[game].gametime >= REVEALTIME){
+            gameData[game].gametime = 0
+            gameData[game].gamestate = "CHOOSE" 
 
             for(player in gameData[game].players) {
                 gameData[game].players[player].object = ""
             }
-        }
-        if(gameData[game].gamestate == "FIGHT" && gameData[game].gametime >= FIGHTTIME){
-            gameData[game].gametime = 0
-            gameData[game].gamestate = "CHOOSE" 
         }
         stateUpdateGame(game)
 
